@@ -1,4 +1,3 @@
-import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -157,73 +156,6 @@ def graphStock(stock):
     plt.show()
     return -1
 
-def get_otp():
-    return input("Enter otpnumber: \n>>>")
-def login1():
-    email = "#"
-    password = "#" 
-
-    # Create a Wsimple instance
-    ws = Wsimple(email, password, otp_callback=get_otp)
-
-    try:
-        if ws.public_mode:
-            print("Logged in successfully in Public Mode")
-            # Perform actions specific to public mode if needed
-        else:
-            # Get basic account information
-            me_info = ws.get_me()
-
-            # Check if the 'user' attribute is present in the response
-            if hasattr(me_info, 'user'):
-                print("Logged in successfully")
-                print("Account Information:")
-                print(f"User ID: {me_info.user.id}")
-                print(f"Email: {me_info.user.email}")
-                print(f"Name: {me_info.user.name}")
-            else:
-                print("Logged in successfully")
-                print("Account Information:")
-                print("User information not available in the response.")
-
-            # Get detailed account information
-            account_info = ws.get_account()
-            print("\nDetailed Account Information:")
-            print(f"Account ID: {account_info.id}")
-            print(f"Account Type: {account_info.account_type}")
-            print(f"Account Status: {account_info.status}")
-
-            # Get historical portfolio data
-            historical_data = ws.get_historical_portfolio_data()
-            print("\nHistorical Portfolio Data:")
-            print(historical_data)
-
-            # Get bank accounts
-            bank_accounts = ws.get_bank_accounts()
-            print("\nBank Accounts:")
-            for account in bank_accounts.results:
-                print(f"Bank Account ID: {account.id}")
-                print(f"Bank Name: {account.institution}")
-                print(f"Account Type: {account.type}")
-                print()
-
-    except Exception as e:
-        print(f"An error occurred: {e}")
-    
-    #def summary_status(self):
-    #ws.dashboard()
-def login():
-    email = "#"
-    password = "#"
-
-    # Create a Wsimple instance
-    ws = Wsimple(email, password, otp_callback=get_otp)
-    ws.dashboard()
-
-
-
-
-
 
 #dailyPrice()
 #graphStock('AMD.NE')
@@ -244,4 +176,4 @@ else:
      
 #time.sleep(10)
 
-login()
+dailyPrice()
